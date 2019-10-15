@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://nure.ua/matchenko/practice7"
+            xmlns:tns="http://nure.ua/matchenko/practice7">
+
+    <xsd:element name="SteelArm">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Knife" type="tns:Knife" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="Knife">
+        <xsd:sequence>
+            <xsd:element name="Type" type="xsd:string"/>
+            <xsd:element name="Handy">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="one-handed"/>
+                        <xsd:enumeration value="two-handed"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="Origin" type="xsd:string"/>
+            <xsd:element name="Visual" type="tns:Visual" maxOccurs="unbounded"/>
+            <xsd:element name="Value" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Visual">
+        <xsd:sequence>
+            <xsd:element name="Blade" type="tns:Blade"></xsd:element>
+            <xsd:element name="Material" type="tns:Material"></xsd:element>
+            <xsd:element name="Bloodstream" type="xsd:boolean"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Blade">
+        <xsd:sequence>
+            <xsd:element name="Length">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:int">
+                        <xsd:minInclusive value="10"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="Width">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:int">
+                        <xsd:minInclusive value="10"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Material">
+        <xsd:sequence>
+            <xsd:element name="BladeMaterial" type="xsd:string"/>
+            <xsd:choice>
+                <xsd:element name="Handle" type="xsd:string"/>
+                <xsd:sequence>
+                    <xsd:element name="WoodHandle" type="xsd:string"/>
+                    <xsd:element name="WoodType" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:choice>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
